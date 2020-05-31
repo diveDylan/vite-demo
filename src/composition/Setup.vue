@@ -2,6 +2,7 @@
   <div>
     名字相同默认取setup的值， props 使用 setup(props)
     <h1> this title: {{title}}</h1>
+    <slot></slot>
     <p>this $data title(the some name of setup() or data(), must get by $data ): {{$data.title}}</p>
     <p>this dataTitle(non some name ): {{dataTitle}}</p>
   </div>
@@ -18,7 +19,7 @@ export default {
     }
   },
   setup(props, context) {
-    console.log(context, props, context.attrs)
+    console.log(context, props, context.attrs, context)
     let watchName
     watchEffect(() => {
       watchName = props.name + 'watching'
@@ -50,7 +51,7 @@ export default {
   },
   methods: {
     log() {
-      console.log(this, this.$data.title, this.title, 'in methods')
+      console.log(this, this.$data.title, this.title, this.status, 'in methods')
     }
   }
 }
